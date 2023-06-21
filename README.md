@@ -1,8 +1,5 @@
 # fuckslurm
 
-[![PyPI - Version](https://img.shields.io/pypi/v/fuckslurm.svg)](https://pypi.org/project/fuckslurm)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fuckslurm.svg)](https://pypi.org/project/fuckslurm)
-
 -----
 
 **Table of Contents**
