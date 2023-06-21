@@ -1,0 +1,6 @@
+name: test
+resubmit_states:
+  - FAILED
+  - TIMEOUT
+frequency: 10
+tryouts: 5

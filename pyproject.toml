@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fuckslurm"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Zegang Cheng", email = "zc2309@nyu.edu" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+  'typer'
+]
+
+[project.urls]
+Documentation = "https://github.com/chengzegang/fuckslurm#readme"
+Issues = "https://github.com/chengzegang/fuckslurm/issues"
+Source = "https://github.com/chengzegang/fuckslurm"
+
+[tool.hatch.version]
+path = "src/fuckslurm/__about__.py"
