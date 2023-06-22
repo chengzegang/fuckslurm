@@ -5,7 +5,7 @@ import json
 
 
 def sbatch(job_command: str):
-    p = subprocess.Popen(["sbatch", job_command])
+    p = subprocess.Popen(["sbatch", *job_command.split(" ")])
     p.wait()
     if p.returncode != 0:
         raise ValueError("sbatch failed.")
