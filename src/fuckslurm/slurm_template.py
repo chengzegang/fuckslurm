@@ -125,27 +125,23 @@ class JobSubmission:
 
     def submit(self):
         sbatch_script = self.parse()
+        print(sbatch_script)
         utils.sbatch(sbatch_script)
 
 
 @dataclass
 class SlurmJob:
     submission: JobSubmission = field(default_factory=JobSubmission)
-
+    scheduled: bool = field(default=False)
     @property
     def jobinfo(self) -> JobInfo:
         jobs = utils.get_job_info_by_job_name(self.submission.name)
         if jobs is None:
             raise ValueError("No job found.")
         return JobInfo(**jobs["jobs"][0])
-
-    @property
-    def scheduled(self) -> bool:
-        jobs = utils.get_job_info_by_job_name(self.submission.name)
-        return jobs is not None
-
     def submit(self):
         self.submission.submit()
+        self.scheduled = True
 
     def cancel(self):
         utils.scancel(self.jobinfo.job_id)
