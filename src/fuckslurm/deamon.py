@@ -18,6 +18,9 @@ class Deamon:
         self._stop: threading.Event = threading.Event()
         self.tryouts = tryouts
         self._tried: int = 0
+        print(f'resubmit states: {resubmit_states}')
+        print(f'frequency: {frequency}')
+        print(f'tryouts: {tryouts}')
 
     def _run_thread(self):
         while (
