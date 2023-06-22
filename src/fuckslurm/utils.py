@@ -8,8 +8,11 @@ def sbatch(job_command: str):
     p = subprocess.Popen(["sbatch", *job_command.split(" ")])
     p.wait()
     if p.returncode != 0:
+        outputs = ""
+        if p.stdout is not None:
+            outputs = p.stdout.read().decode("utf-8")
         raise ValueError(
-            f"sbatch failed. Please check your job command. \n stderr: {p.stderr}"
+            f"sbatch failed. Please check your job command. \n output: {outputs}"
         )
 
 
