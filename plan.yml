@@ -1,6 +1,15 @@
 name: test
+out: test.out
+nodes: 1
+ntasks_per_node: 1
+cpus_per_task: 4
+mem: 64GB
+gres: a100:1
+time: 4:00:00
 resubmit_states:
   - FAILED
   - TIMEOUT
 frequency: 10
 tryouts: 5
+
+wrap: python -m test
