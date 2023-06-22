@@ -1,13 +1,15 @@
-from typing import Iterable
+from typing import Iterable, List
 from .slurm_template import SlurmJob, JobStateTyle
 import threading
 import time
 from loguru import logger
+
+
 class Deamon:
     def __init__(
         self,
         job: SlurmJob,
-        resubmit_states: Iterable[JobStateTyle],
+        resubmit_states: List[JobStateTyle],
         frequency: int = 60,
         tryouts: int = 0,
     ):
@@ -21,17 +23,18 @@ class Deamon:
     def _run_thread(self):
         while (
             not self._stop.is_set() and self.tryouts > 0 and self._tried < self.tryouts
-        ):  
+        ):
             print(1)
             if self.job.state in self.resubmit_states:
                 self.job.submit()
                 self._tried += 1
-                logger.debug(f'current tried: {self._tried}')
+                logger.debug(f"current tried: {self._tried}")
             time.sleep(self.frequency)
 
     def spin(self, thr: threading.Thread):
         if threading.current_thread() is threading.main_thread():
             while thr.is_alive():
+                print(2)
                 time.sleep(1)
 
     def start(self):
