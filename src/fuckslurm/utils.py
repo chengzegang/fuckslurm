@@ -7,7 +7,7 @@ import json
 def sbatch(job_command: str):
     p = subprocess.run(["sbatch", *job_command.split(" ")], capture_output=True)
     if p.returncode != 0:
-        raise ValueError(p.stderr)
+        raise ValueError(p.stderr.decode("utf-8").strip())
     else:
         if p.stdout is not None:
             stdout = p.stdout.decode("utf-8").strip()
