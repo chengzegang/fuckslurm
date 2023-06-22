@@ -8,7 +8,9 @@ def sbatch(job_command: str):
     p = subprocess.Popen(["sbatch", *job_command.split(" ")])
     p.wait()
     if p.returncode != 0:
-        raise ValueError("sbatch failed.")
+        raise ValueError(
+            f"sbatch failed. Please check your job command. \n stderr: {p.stderr}"
+        )
 
 
 def scancel(job_id: int):
