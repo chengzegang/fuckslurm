@@ -9,7 +9,7 @@ time: 4:00:00
 resubmit_states:
   - FAILED
   - TIMEOUT
-frequency: 10
+frequency: 1
 tryouts: 5
 
 wrap: python -m test

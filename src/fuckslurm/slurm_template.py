@@ -134,15 +134,15 @@ class SlurmJob:
 
     @property
     def jobinfo(self) -> JobInfo:
-        jobs = utils.get_job_info_by_job_name(self.submission.name)["jobs"]
-        if len(jobs) == 0:
+        jobs = utils.get_job_info_by_job_name(self.submission.name)
+        if jobs is None:
             raise ValueError("No job found.")
-        return JobInfo(**jobs[0])
+        return JobInfo(**jobs["jobs"][0])
 
     @property
     def scheduled(self) -> bool:
-        jobs = utils.get_job_info_by_job_name(self.submission.name)["jobs"]
-        return len(jobs) > 0
+        jobs = utils.get_job_info_by_job_name(self.submission.name)
+        return jobs is not None
 
     def submit(self):
         self.submission.submit()
