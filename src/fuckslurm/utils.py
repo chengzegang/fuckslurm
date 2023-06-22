@@ -6,8 +6,7 @@ import json
 
 def sbatch(job_command: str):
     p = subprocess.Popen(["sbatch", *job_command.split(" ")])
-    p.wait()
-    if p.returncode != 0:
+    if p.wait() != 0:
         outputs = ""
         if p.stdout is not None:
             outputs = p.stdout.read().decode("utf-8")
