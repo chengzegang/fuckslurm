@@ -2,7 +2,6 @@ from typing import Iterable, List
 from .slurm_template import SlurmJob, JobStateTyle
 import threading
 import time
-from loguru import logger
 
 
 class Deamon:
@@ -28,7 +27,7 @@ class Deamon:
             if self.job.state in self.resubmit_states:
                 self.job.submit()
                 self._tried += 1
-                logger.debug(f"current tried: {self._tried}")
+                print(f"tried: {self._tried}")
             time.sleep(self.frequency)
 
     def spin(self, thr: threading.Thread):
